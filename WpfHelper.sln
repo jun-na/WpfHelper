@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfHelper", "WpfHelper\WpfHelper.csproj", "{36C55A0A-6463-4158-ADCE-7E2DE0E3ECBB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBoxForKamishibai", "MessageBoxForKamishibai\MessageBoxForKamishibai.csproj", "{0258CBBF-C603-4903-AF61-830761155373}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{36C55A0A-6463-4158-ADCE-7E2DE0E3ECBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36C55A0A-6463-4158-ADCE-7E2DE0E3ECBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36C55A0A-6463-4158-ADCE-7E2DE0E3ECBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0258CBBF-C603-4903-AF61-830761155373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0258CBBF-C603-4903-AF61-830761155373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0258CBBF-C603-4903-AF61-830761155373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0258CBBF-C603-4903-AF61-830761155373}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

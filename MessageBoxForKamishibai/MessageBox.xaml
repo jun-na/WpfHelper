@@ -1,0 +1,47 @@
+﻿<Window x:Class="MessageBoxForKamishibai.Windows.MessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MessageBoxForKamishibai"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance MessageBoxViewModel}"
+        Title="MessageBox" Height="350" Width="400"
+        x:Name="root"
+        >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+                <TextBlock  x:Name="caption"
+                       TextWrapping="Wrap"
+                       Text="メッセージ"/>
+            </Grid>
+
+            <UniformGrid x:Name="buttonContainer" Grid.Row="1" HorizontalAlignment="Center"
+                     Columns="2">
+                <Button x:Name="okButton" Content="OK" Width="100" Margin="5"
+                    Command="{Binding OkCommand}"/>
+
+                <Button x:Name="yesButton" Content="OK" Width="100" Margin="5"
+                    Command="{Binding YesCommand}"/>
+                <Button x:Name="cancelButton" Content="OK" Width="100" Margin="5"
+                    Command="{Binding NoCommand}"/>
+            </UniformGrid>
+        </Grid>
+    </Grid>
+</Window>

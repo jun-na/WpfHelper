@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
+		<PackageReference Include="Kamishibai.Hosting" Version="3.1.0" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Compile Update="MessageBox.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	</ItemGroup>
+</Project>
