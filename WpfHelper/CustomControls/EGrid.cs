@@ -53,7 +53,7 @@ public class EGrid : Grid
         }
     }
 
-    public enum FlowDirection
+    public enum EDirection
     {
         // なし
         None = 0,
@@ -62,22 +62,22 @@ public class EGrid : Grid
         // 上から下
         Vertical = 2,
     }
-    private static readonly DependencyProperty FlowDirectionProperty =
+    private static readonly DependencyProperty DirectionProperty =
         DependencyProperty.Register(
-            "FlowDirection",
-            typeof(FlowDirection),
+            "Direction",
+            typeof(EDirection),
             typeof(EGrid),
-            new PropertyMetadata(FlowDirection.None));
+            new PropertyMetadata(EDirection.None, OnRowsChanged));
 
-    public FlowDirection Direction
-        {
+    public EDirection Direction
+    {
         get
         {
-            return (FlowDirection)GetValue(FlowDirectionProperty);
+            return (EDirection)GetValue(DirectionProperty);
         }
         set
         {
-            SetValue(FlowDirectionProperty, value);
+            SetValue(DirectionProperty, value);
         }
     }
 
@@ -171,19 +171,19 @@ public class EGrid : Grid
     {
         int columnCount = ColumnDefinitions.Count;
         int rowCount = RowDefinitions.Count;
-        UIElementCollection internalChildren = base.InternalChildren;
-        for (int i = 0; i < Math.Min(InternalChildren.Count, columnCount * rowCount); i++)
+        UIElementCollection internalChildren = InternalChildren;
+        for (int i = 0; i < Math.Min(internalChildren.Count, columnCount * rowCount); i++)
         {
-            UIElement child = InternalChildren[i];
+            UIElement child = internalChildren[i];
             if (child != null)
             {
                 switch (Direction)
                 {
-                    case FlowDirection.Horizontal:
+                    case EDirection.Horizontal:
                         child.SetValue(ColumnProperty, i % columnCount);
                         child.SetValue(RowProperty, i / columnCount);
                         break;
-                    case FlowDirection.Vertical:
+                    case EDirection.Vertical:
                         child.SetValue(ColumnProperty, i / rowCount);
                         child.SetValue(RowProperty, i % rowCount);
                         break;
