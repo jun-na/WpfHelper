@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -8,6 +8,7 @@ namespace WpfHelper.CustomControls;
 /// </summary>
 public class EGrid : Grid
 {
+
 
     private static readonly DependencyProperty ColumnsProperty =
         DependencyProperty.Register("Columns",
@@ -49,6 +50,34 @@ public class EGrid : Grid
         set
         {
             SetValue(RowsProperty, value);
+        }
+    }
+
+    public enum FlowDirection
+    {
+        // なし
+        None = 0,
+        // 左から右
+        Horizontal = 1,
+        // 上から下
+        Vertical = 2,
+    }
+    private static readonly DependencyProperty FlowDirectionProperty =
+        DependencyProperty.Register(
+            "FlowDirection",
+            typeof(FlowDirection),
+            typeof(EGrid),
+            new PropertyMetadata(FlowDirection.None));
+
+    public FlowDirection Direction
+        {
+        get
+        {
+            return (FlowDirection)GetValue(FlowDirectionProperty);
+        }
+        set
+        {
+            SetValue(FlowDirectionProperty, value);
         }
     }
 
@@ -130,5 +159,40 @@ public class EGrid : Grid
 
         // レイアウトを更新
         grid.UpdateLayout();
+    }
+
+
+    /// <summary>
+    /// レイアウトのカスタム
+    /// </summary>
+    /// <param name="constraint">Constraint</param>
+    /// <returns>Desired size</returns>
+    protected override Size MeasureOverride(Size constraint)
+    {
+        int columnCount = ColumnDefinitions.Count;
+        int rowCount = RowDefinitions.Count;
+        UIElementCollection internalChildren = base.InternalChildren;
+        for (int i = 0; i < Math.Min(InternalChildren.Count, columnCount * rowCount); i++)
+        {
+            UIElement child = InternalChildren[i];
+            if (child != null)
+            {
+                switch (Direction)
+                {
+                    case FlowDirection.Horizontal:
+                        child.SetValue(ColumnProperty, i % columnCount);
+                        child.SetValue(RowProperty, i / columnCount);
+                        break;
+                    case FlowDirection.Vertical:
+                        child.SetValue(ColumnProperty, i / rowCount);
+                        child.SetValue(RowProperty, i % rowCount);
+                        break;
+                    default:
+                        // なしの場合はデフォルトの動作を行う
+                        break;
+                }
+            }
+        }
+        return base.MeasureOverride(constraint);
     }
 }
